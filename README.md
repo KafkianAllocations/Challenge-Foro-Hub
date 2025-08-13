@@ -36,8 +36,7 @@ Diagrama del Proyecto
 
 A continuación, se presenta un diagrama ASCII básico que describe cómo los usuarios interactúan con la API y cómo las peticiones pasan a través del servidor y la base de datos.
 
-
-
+Flujo Básico de la API
 
 +------------------+       +-------------------+       +------------------+
 |    Usuario      |       |     API REST      |       |    Base de Datos |
