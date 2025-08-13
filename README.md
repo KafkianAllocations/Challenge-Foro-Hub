@@ -1,232 +1,170 @@
-Foro Hub - API REST
 
-Foro Hub es una API REST creada como parte del desafío del curso Java Back End de Alura Latam y Oracle Next Education. En este proyecto, implementé funcionalidades CRUD para la creación, visualización, actualización y eliminación de tópicos en un foro, utilizando Java 17, Spring Boot, Maven, MySQL, Flyway, JWT, y Spring Security.
-Descripción del Proyecto
+-----
 
-La API permite a los usuarios interactuar con un foro en el que pueden:
+# 🚀 Foro Hub - API REST
 
-    Crear nuevos tópicos.
+¡Bienvenido al repositorio de **Foro Hub**\! Este proyecto es una API REST robusta y segura, desarrollada como parte del desafío del curso **Java Back End** de Alura Latam y Oracle Next Education. Su objetivo principal es simular las funcionalidades básicas de un foro, permitiendo la gestión de tópicos.
 
-    Visualizar todos los tópicos creados.
 
-    Consultar un tópico específico.
 
-    Actualizar o eliminar tópicos existentes.
+## 📜 Descripción del Proyecto
 
-Además, se implementa seguridad a través de tokens JWT para proteger ciertas rutas, como la creación, actualización y eliminación de tópicos.
-Tecnologías Utilizadas
+Foro Hub es una API que facilita la interacción de usuarios a través de la creación, lectura, actualización y eliminación (**CRUD**) de tópicos en un foro. La aplicación está construida sobre una arquitectura sólida, utilizando **Java 17** y el ecosistema **Spring Boot**.
 
-    Java 17: Lenguaje de programación utilizado para desarrollar la API.
+### 🔒 Seguridad y Autenticación
 
-    Spring Boot: Framework para la creación de la API REST.
+Para garantizar la integridad y la privacidad de los datos, la API implementa un sistema de seguridad robusto. Las operaciones que modifican el contenido del foro (crear, actualizar, eliminar) están protegidas con **JWT (JSON Web Tokens)**, lo que asegura que solo los usuarios autenticados puedan realizarlas.
 
-    Maven: Herramienta de gestión de dependencias y construcción de proyectos.
+-----
 
-    MySQL: Base de datos relacional para almacenar la información de los tópicos.
+## 🛠️ Tecnologías Utilizadas
 
-    Flyway: Herramienta de migración de base de datos para gestionar cambios en el esquema.
+Este proyecto fue desarrollado utilizando las siguientes tecnologías:
 
-    Spring Security: Framework para implementar seguridad en la API.
+  * **Java 17**: El lenguaje de programación principal.
+  * **Spring Boot**: Framework que simplifica la creación de la API REST.
+  * **Maven**: Herramienta de gestión de dependencias y construcción del proyecto.
+  * **MySQL**: Base de datos relacional para el almacenamiento de los tópicos.
+  * **Flyway**: Herramienta para la gestión de migraciones de la base de datos.
+  * **Spring Security**: Módulo para la implementación de la seguridad y autenticación.
+  * **JWT**: Sistema de autenticación basado en tokens con Auth0.
+  * **Postman**: Herramienta utilizada para probar los endpoints de la API.
 
-    JWT: Sistema de autenticación basado en tokens para proteger las rutas.
+-----
 
-    Postman: Herramienta para probar los endpoints de la API.
+## 📊 Flujo de la Aplicación
 
+A continuación, se presenta un diagrama de flujo que ilustra el proceso de interacción de un usuario con la API.
 
+```
++---------------------+           +---------------------+
+|      Usuario        |           |      API REST       |
++---------------------+           +---------------------+
+           |                                 |
+           | 1. Solicita token JWT           |
+           |-------------------------------->|
+           |                                 |
+           | 2. Valida credenciales          |
+           |<--------------------------------|
+           |                                 |
++---------------------+                      |
+|      Usuario        |                      |
+| (con token válido)  |                      |
++---------------------+                      |
+           |                                 |
+           | 3. Solicita ruta protegida      |
+           |   (Ej: Crear tópico)            |
+           |-------------------------------->|
+           |                                 |
+           |                         +----------------+
+           |                         |   Base de Datos|
+           |                         |     (MySQL)    |
+           |                         +----------------+
+           |                                 |
+           | 4. Realiza operación CRUD       |
+           |   (Crear, leer, actualizar,     |
+           |    eliminar)                    |
+           |<--------------------------------|
+           |                                 |
+           | 5. Recibe respuesta             |
+           |<--------------------------------|
+           |   (Éxito o error)               |
+```
 
-Descripción del flujo:
+-----
 
-    El usuario solicita un token JWT a través del endpoint de autenticación.
+## 🚀 Endpoints de la API
 
-    La API valida el JWT y, si es válido, permite la interacción con las rutas protegidas.
+La API de Foro Hub expone los siguientes endpoints:
 
-    El usuario puede crear o actualizar un tópico, el cual se guarda en la base de datos.
+| Método | Endpoint                    | Descripción                                      | Autenticación |
+| :----- | :-------------------------- | :----------------------------------------------- | :------------ |
+| `POST` | `/autenticacion`            | Obtiene un token JWT.                            | No requerida  |
+| `GET`  | `/topicos`                  | Obtiene la lista de todos los tópicos.           | No requerida  |
+| `GET`  | `/topicos/{id}`             | Obtiene los detalles de un tópico específico.    | No requerida  |
+| `POST` | `/topicos`                  | Crea un nuevo tópico.                            | **JWT requerido** |
+| `PUT`  | `/topicos/{id}`             | Actualiza la información de un tópico.           | **JWT requerido** |
+| `DELETE`| `/topicos/{id}`             | Elimina un tópico específico.                    | **JWT requerido** |
 
-    La base de datos (MySQL) realiza operaciones CRUD para persistir los datos.
+-----
 
-    El usuario responde a un tópico. La respuesta se guarda en la base de datos.
+## ⚙️ Instalación y Configuración
 
-    El usuario consulta la lista de tópicos y recibe una respuesta con los tópicos almacenados.
+Sigue estos sencillos pasos para poner la aplicación en marcha en tu entorno local.
 
+### 1\. Clonar el repositorio
 
-
-
-Endpoints:
-
-1. Listar Tópicos
-
-GET /topicos
-
-    Descripción: Obtiene la lista de todos los tópicos existentes en la base de datos.
-
-    Autenticación: No es requerida.
-
-2. Crear un Tópico
-
-POST /topicos
-
-    Descripción: Crea un nuevo tópico. El cuerpo de la solicitud debe contener el título y la descripción del tópico.
-
-    Autenticación: Requiere un token JWT válido.
-
-    Campos:
-
-        titulo: String (Requerido)
-
-        descripcion: String (Requerido)
-
-3. Mostrar un Tópico Específico
-
-GET /topicos/{id}
-
-    Descripción: Obtiene los detalles de un tópico específico por su ID.
-
-    Autenticación: No es requerida.
-
-4. Actualizar un Tópico
-
-PUT /topicos/{id}
-
-    Descripción: Actualiza la información de un tópico existente. Se puede actualizar el título y la descripción.
-
-    Autenticación: Requiere un token JWT válido.
-
-    Campos:
-
-        titulo: String (Opcional)
-
-        descripcion: String (Opcional)
-
-5. Eliminar un Tópico
-
-DELETE /topicos/{id}
-
-    Descripción: Elimina un tópico específico por su ID.
-
-    Autenticación: Requiere un token JWT válido.
-
-6. Autenticación
-
-POST /autenticacion
-
-    Descripción: Obtiene un token JWT para acceder a las rutas protegidas.
-
-    Cuerpo de la solicitud:
-
-        username: String (Requerido)
-
-        password: String (Requerido)
-
-    Respuesta:
-
-        token: String (JWT que debe usarse para autenticar las peticiones posteriores)
-
-
-
-        Instalación y Configuración
-1. Clonar el repositorio:
-
+```bash
 git clone https://github.com/tu-usuario/foro-hub.git
 cd foro-hub
+```
 
-2. Configurar la base de datos MySQL
+### 2\. Configurar la base de datos MySQL
 
-Crea una base de datos en MySQL con el nombre foro_hub (o el que prefieras) y asegúrate de que las credenciales coincidan con las que has configurado en el archivo application.properties:
+Crea una base de datos con el nombre `foro_hub` y configura las credenciales de conexión en el archivo `src/main/resources/application.properties`.
 
+```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/foro_hub
-spring.datasource.username=usuario
-spring.datasource.password=contraseña
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_contraseña
+```
 
+### 3\. Ejecutar las migraciones de Flyway
 
-
-3. Ejecutar las migraciones
-
-Usa Flyway para crear la estructura de la base de datos ejecutando:
-
+```bash
 mvn flyway:migrate
+```
 
+### 4\. Ejecutar la aplicación
 
-4. Ejecutar la aplicación
-
-Para iniciar el servidor local, simplemente ejecuta:
-
-
+```bash
 mvn spring-boot:run
+```
 
+La API estará disponible en `http://localhost:8080`.
 
-La API estará disponible en http://localhost:8080.
-Pruebas de la API
+-----
 
-Puedes probar los endpoints utilizando Postman o Insomnia. Aquí tienes algunos ejemplos de cómo hacer las peticiones:
+## ✅ Ejemplos de Peticiones
 
-    Crear un tópico (POST):
+Puedes utilizar Postman para probar cada uno de los endpoints de la API.
 
-    POST /topicos
-{
-  "titulo": "¿Cómo uso Spring Boot?",
-  "descripcion": "Tengo dudas sobre cómo configurar Spring Boot para un proyecto."
-}
+### ➡️ Obtener token JWT
 
+`POST /autenticacion`
+**Body:**
 
-GET /topicos
-
-GET /topicos/{id}
-
-
-PUT /topicos/{id}
-{
-  "titulo": "Actualización sobre Spring Boot",
-  "descripcion": "Ahora tengo más claridad sobre Spring Boot."
-}
-
-
-DELETE /topicos/{id}
-
-
-POST /autenticacion
+```json
 {
   "username": "usuario",
   "password": "contraseña"
 }
+```
 
+### ➡️ Crear un nuevo tópico
 
-Respuesta:
+`POST /topicos`
+**Header:** `Authorization: Bearer <tu_token_jwt>`
+**Body:**
 
+```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMjM0NTY3ODkwfQ.sJ0Ig1w-Dn..."
+  "titulo": "¿Cómo usar Spring Boot?",
+  "descripcion": "Tengo dudas sobre cómo configurar Spring Boot para un proyecto."
 }
+```
 
+-----
 
+## 🤝 Contribuciones y Comunidad
 
-Consideraciones y Buenas Prácticas
+Si tienes alguna sugerencia o quieres contribuir al proyecto, ¡no dudes en contactarme\! También puedes unirte a la comunidad de Discord de Alura para compartir tus avances y obtener ayuda.
 
-    Asegúrate de manejar los errores de forma adecuada con respuestas HTTP claras (404 para no encontrado, 400 para malas solicitudes, etc.).
+-----
 
-    La autenticación JWT es necesaria para la creación, actualización y eliminación de tópicos.
+## 📄 Licencia
 
-    Se recomienda probar la API utilizando herramientas como Postman o Insomnia.
-
-Recomendaciones
-
-    Trello: Utiliza un tablero de Trello para gestionar las tareas y dividir el proyecto en partes más pequeñas.
-
-    Alura: Repasa los conceptos de APIs que puedes encontrar en los cursos de Alura.
-
-    Personaliza el Proyecto: ¡Dale tu toque personal y comparte tu progreso en la comunidad de Discord!
-
-
-
-
-
-
-
-
-
-
-Licencia
-
-Este proyecto está bajo la licencia MIT. Ver el archivo LICENSE para más detalles.
-
+Este proyecto se encuentra bajo la **Licencia MIT**. Puedes revisar el archivo `LICENSE` para más detalles.
 
 
 
