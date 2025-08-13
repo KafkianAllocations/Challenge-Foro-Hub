@@ -39,23 +39,23 @@ A continuación, se presenta un diagrama ASCII básico que describe cómo los us
 
 
 
-+---------------+      +-------------------+      +------------------+
-|   Usuario    | ---> |     API REST      | ---> |    Base de Datos |
-|   (Cliente)  |      |  (Spring Boot)    |      |  (MySQL)         |
-+---------------+      +-------------------+      +------------------+
-       |                      |                           |
-       |  1. Solicita Token   |  2. Valida JWT             |
-       |--------------------->|--------------------------->|
-       |                      |                           |
-       |  3. Crea/Actualiza   |  4. CRUD en Base de Datos  |
-       |     Tópico           | <--------------------------|
-       |--------------------->|                           |
-       |                      |                           |
-       |  5. Responde a Tópico|  6. Guarda Respuesta      |
-       |--------------------->|--------------------------->|
-       |                      |                           |
-       |  7. Consulta Tópicos |  8. Devuelve la lista     |
-       |--------------------->| <--------------------------|
++------------------+       +-------------------+       +------------------+
+|    Usuario      |       |     API REST      |       |    Base de Datos |
+|  (Frontend)     | ----> |  (Spring Boot)    | ----> |     (MySQL)      |
++------------------+       +-------------------+       +------------------+
+        |                         |                           |
+        |  1. Solicita Token JWT   |  2. Valida JWT            |
+        |------------------------->|------------------------->|
+        |                         |                           |
+        |  3. CRUD de Tópicos      |  4. CRUD en la base de datos|
+        |------------------------->|------------------------->|
+        |                         |                           |
+        |  5. Responde a Tópicos   |  6. Guarda Respuesta     |
+        |------------------------->|------------------------->|
+        |                         |                           |
+        |  7. Consulta de Tópicos  |  8. Devuelve Respuesta   |
+        |------------------------->|<-------------------------|
+
 
 
 
