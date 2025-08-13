@@ -37,6 +37,8 @@ Diagrama del Proyecto
 A continuación, se presenta un diagrama ASCII básico que describe cómo los usuarios interactúan con la API y cómo las peticiones pasan a través del servidor y la base de datos.
 
 
+
+
 +---------------+      +-------------------+      +------------------+
 |   Usuario    | ---> |     API REST      | ---> |    Base de Datos |
 |   (Cliente)  |      |  (Spring Boot)    |      |  (MySQL)         |
@@ -54,6 +56,8 @@ A continuación, se presenta un diagrama ASCII básico que describe cómo los us
        |                      |                           |
        |  7. Consulta Tópicos |  8. Devuelve la lista     |
        |--------------------->| <--------------------------|
+
+
 
 
 
