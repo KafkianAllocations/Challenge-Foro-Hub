@@ -32,11 +32,30 @@ Tecnologías Utilizadas
 
     Postman: Herramienta para probar los endpoints de la API.
 
+
+
+
+
+
+
 Diagrama del Proyecto
+
 
 A continuación, se presenta un diagrama ASCII básico que describe cómo los usuarios interactúan con la API y cómo las peticiones pasan a través del servidor y la base de datos.
 
+
+
+
+
+
 Flujo Básico de la API
+
+
+
+
+
+
+
 
 +------------------+       +-------------------+       +------------------+
 |    Usuario      |       |     API REST      |       |    Base de Datos |
@@ -54,6 +73,8 @@ Flujo Básico de la API
         |                         |                           |
         |  7. Consulta de Tópicos  |  8. Devuelve Respuesta   |
         |------------------------->|<-------------------------|
+
+
 
 
 
@@ -236,6 +257,66 @@ Recomendaciones
 
     Personaliza el Proyecto: ¡Dale tu toque personal y comparte tu progreso en la comunidad de Discord!
 
+
+
+
+
+
+
+
+
+
 Licencia
 
 Este proyecto está bajo la licencia MIT. Ver el archivo LICENSE para más detalles.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
