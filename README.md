@@ -34,53 +34,6 @@ Tecnologías Utilizadas
 
 
 
-
-
-
-
-Diagrama del Proyecto
-
-
-A continuación, se presenta un diagrama ASCII básico que describe cómo los usuarios interactúan con la API y cómo las peticiones pasan a través del servidor y la base de datos.
-
-
-
-
-
-
-Flujo Básico de la API
-
-
-
-
-
-
-
-
-+------------------+       +-------------------+       +------------------+
-|    Usuario      |       |     API REST      |       |    Base de Datos |
-|  (Frontend)     | ----> |  (Spring Boot)    | ----> |     (MySQL)      |
-+------------------+       +-------------------+       +------------------+
-        |                         |                           |
-        |  1. Solicita Token JWT   |  2. Valida JWT            |
-        |------------------------->|------------------------->|
-        |                         |                           |
-        |  3. CRUD de Tópicos      |  4. CRUD en la base de datos|
-        |------------------------->|------------------------->|
-        |                         |                           |
-        |  5. Responde a Tópicos   |  6. Guarda Respuesta     |
-        |------------------------->|------------------------->|
-        |                         |                           |
-        |  7. Consulta de Tópicos  |  8. Devuelve Respuesta   |
-        |------------------------->|<-------------------------|
-
-
-
-
-
-
-
-
 Descripción del flujo:
 
     El usuario solicita un token JWT a través del endpoint de autenticación.
@@ -95,7 +48,11 @@ Descripción del flujo:
 
     El usuario consulta la lista de tópicos y recibe una respuesta con los tópicos almacenados.
 
-Endpoints
+
+
+
+Endpoints:
+
 1. Listar Tópicos
 
 GET /topicos
